@@ -22,4 +22,12 @@ const stories = [
   }
 ];
 
-ReactDOM.render(<App stories={stories} />, document.getElementById("root"));
+ReactDOM.render(
+  <App
+    stories={stories}
+    onArchive={objectID => {
+      console.log(objectID);
+    }}
+  />,
+  document.getElementById("root")
+);
