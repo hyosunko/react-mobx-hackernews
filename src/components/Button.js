@@ -12,4 +12,5 @@ const Button = ({ onClick, className, type = "button", children }) => (
   </button>
 );
 
+export default Button;
 export { ButtonInline };
