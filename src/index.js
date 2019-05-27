@@ -1,18 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { autorun } from "mobx";
+import { Provider } from "mobx-react";
+
 import "./index.css";
 import App from "./components/App";
 import store from "./stores";
 
-function render() {
-  ReactDOM.render(
-    <App
-      stories={store.storyStore.readableStories}
-      onArchive={objectID => store.archiveStore.archivedStory(objectID)}
-    />,
-    document.getElementById("root")
-  );
-}
-
-autorun(render);
+ReactDOM.render(
+  <Provider {...store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
