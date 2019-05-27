@@ -1,6 +1,11 @@
+import { configure } from "mobx";
+
 import StoryStore from "./storyStore";
 import ArchiveStore from "./archiveStore";
 
+configure({
+  enforeceActions: "observed"
+});
 class RootStore {
   constructor() {
     this.storyStore = new StoryStore(this);

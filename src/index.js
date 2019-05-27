@@ -9,7 +9,7 @@ function render() {
   ReactDOM.render(
     <App
       stories={store.storyStore.readableStories}
-      onArchive={objectID => store.archiveStore.archivedStoryIds.push(objectID)}
+      onArchive={objectID => store.archiveStore.archivedStory(objectID)}
     />,
     document.getElementById("root")
   );
