@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import { observable, action } from "mobx";
 import { observer, inject } from "mobx-react";
 import Button from "./Button";
-
-const HN_BASE_URL = "http://hn.algolia.com/api/v1/search?query=";
-
-const fetchStories = query =>
-  fetch(HN_BASE_URL + query).then(response => response.json());
+import { fetchStories } from "../api/story";
 
 @inject("storyStore")
 @observer
@@ -27,10 +23,11 @@ class SearchStories extends Component {
 
   @action
   onSubmit(event) {
+    const { storyStore } = this.props;
     if (this.query) {
-      fetchStories(this.query).then(result =>
-        this.props.storyStore.setStories(result.hits)
-      );
+      fetchStories(this.query)
+        .then(result => storyStore.setStories(result.hits))
+        .catch(storyStore.setError);
 
       this.query = "";
     }
