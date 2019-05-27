@@ -25,17 +25,12 @@ const COLUMNS = {
   }
 };
 
-const Stories = ({ storyStore, archiveStore }) => (
+const Stories = ({ storyStore }) => (
   <div className="stories">
     <StoriesHeader columns={COLUMNS} />
 
     {(storyStore.readableStories || []).map(story => (
-      <Story
-        story={story}
-        key={story.objectID}
-        columns={COLUMNS}
-        onArchive={archiveStore.archivedStory}
-      />
+      <Story story={story} key={story.objectID} columns={COLUMNS} />
     ))}
   </div>
 );
@@ -50,4 +45,4 @@ const StoriesHeader = ({ columns }) => (
   </div>
 );
 
-export default inject("storyStore", "archiveStore")(observer(Stories));
+export default inject("storyStore")(observer(Stories));
